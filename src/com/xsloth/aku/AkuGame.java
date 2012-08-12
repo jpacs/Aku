@@ -1,8 +1,11 @@
 package com.xsloth.aku;
 
-import org.lwjgl.opengl.Display;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
+
+import com.xsloth.aku.states.Game;
+import com.xsloth.aku.states.Intro;
+import com.xsloth.aku.states.MainMenu;
 
 public class AkuGame extends StateBasedGame  {
 
@@ -15,6 +18,7 @@ public class AkuGame extends StateBasedGame  {
 		super(gamename);
 		this.addState(new Intro(INTROSTATE));
 		this.addState(new MainMenu(MENUSTATE));
+		this.addState(new Game(GAMEPLAYSTATE));
 	}
 
 	
@@ -37,8 +41,8 @@ public class AkuGame extends StateBasedGame  {
 	public void initStatesList(GameContainer gc) throws SlickException {
 		this.getState(INTROSTATE).init(gc, this);
 		this.getState(MENUSTATE).init(gc, this);
-		//this.getState(GAMEPLAYSTATE).init(gc, this);
-		this.enterState(INTROSTATE);
+		this.getState(GAMEPLAYSTATE).init(gc, this);
+		this.enterState(MENUSTATE);
 		
 	}
 

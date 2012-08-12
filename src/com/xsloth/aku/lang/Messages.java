@@ -1,3 +1,6 @@
+/**
+ * Class to handle internationalization. Using resource bundles for non hard coded strings.
+ */
 package com.xsloth.aku.lang;
 
 import java.util.MissingResourceException;
@@ -12,7 +15,10 @@ public class Messages {
 
 	private Messages() {
 	}
-
+	
+	/**
+	 * Getters and Setters
+	 */
 	public static String getString(String key) {
 		try {
 			return RESOURCE_BUNDLE.getString(key);
@@ -34,6 +40,10 @@ public class Messages {
 		return false;
 	}
 	
+	/**
+	 * Methods
+	 */
+	// Check if a determined country is the current locale
 	public static boolean isCountryCode(String code){
 		if(code.contentEquals("en") || code.contentEquals("pt") || code.contentEquals("fr")){
 			return true;
