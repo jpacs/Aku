@@ -1,5 +1,20 @@
 package com.xsloth.aku.gui;
 
-public class Energybar extends Gui {
+import org.newdawn.slick.Graphics;
 
+public class Energybar implements Gui {
+
+	@Override
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/**
+	 * Getters and Setters
+	 */
+	
+	/**
+	 * Methods
+	 */
 }

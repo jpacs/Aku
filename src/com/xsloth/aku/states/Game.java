@@ -9,10 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import com.xsloth.aku.AkuGame;
 import com.xsloth.aku.game.Fight;
-import com.xsloth.aku.game.Round;
-import com.xsloth.aku.gui.Face;
-import com.xsloth.aku.gui.Lifebar;
-import com.xsloth.aku.gui.Stage;
+import com.xsloth.aku.game.SurvivalFight;
 import com.xsloth.aku.input.ActionState;
 import com.xsloth.aku.input.InputAction;
 import com.xsloth.aku.input.InputManager;
@@ -22,11 +19,11 @@ public class Game extends BasicGameState {
 	int stateID;
 	
 	Fight fight;
-	Round gameRounds;
-	//Gui Variables
-	Face p1Face, p2Face;
-	Lifebar p1Lifebar, p2Lifebar;
-	Stage stage;
+	
+	String p1, p2, stage;
+	int gameMode;
+	
+	int timerTime;
 	
 	public Game(int stateId){
 		this.stateID = stateId;
@@ -37,40 +34,61 @@ public class Game extends BasicGameState {
 		System.out.println("GameOption: " + gameoption);
 	}
 	
+	/**
+	 * State Logic
+	 */
+	
 	@Override
-	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
-		
-		
+	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+		p1 = p2 = stage = null;
+		gameMode = -1;
 	}
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
 		super.enter(container, game);
-		gameRounds = new Round(7);
+		switch(gameMode){
+		case 0:
+			fight = new Fight(p1, p2, stage);
+			break;
+		case 1:
+			fight = new SurvivalFight(p1, p2, stage);
+			break;
+		}
 	}
 
 	@Override
-	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
+	public void leave(GameContainer container, StateBasedGame game) throws SlickException {
+		p1 = p2 = stage = null;
+		gameMode = -1;
+	}
+
+	@Override
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		fight.render(g);
 		Display.sync(60);
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		if(InputManager.getActionState(InputAction.MENU_CANCEL) == ActionState.STATE_TAPPED){
-			sbg.enterState(AkuGame.MENUSTATE);
-		}
-		
-		if(gameRounds.isWon() > 0)
-			System.out.println("Player " + gameRounds.isWon() + " wins.");
-		else{
-			if(InputManager.getActionState(InputAction.ACTION_DOWN) == ActionState.STATE_TAPPED){
-				gameRounds.setWinner(1);
+		if(gc.hasFocus()){
+			timerTime += delta;
+			if(timerTime > 1000){
+				fight.tick();
+				timerTime=0;
 			}
-			if(InputManager.getActionState(InputAction.ACTION_UP) == ActionState.STATE_TAPPED){
-				gameRounds.setWinner(2);
+			//System.out.println(delta);
+
+			if(InputManager.getActionState(InputAction.MENU_CANCEL) == ActionState.STATE_TAPPED){
+				sbg.enterState(AkuGame.MENUSTATE);
 			}
+			if(!fight.isFightOver())
+				fight.update(delta);
+			else
+				sbg.enterState(AkuGame.MENUSTATE);
+
+			InputManager.tick();
 		}
-		InputManager.tick();
 	}
 
 	@Override
@@ -79,8 +97,32 @@ public class Game extends BasicGameState {
 	}
 	
 	/**
+	 * Getters and Setters
+	 */
+	
+	public void setCharacters(String p1, String p2){
+		this.p1 = p1;
+		this.p2 = p2;
+	}
+	
+	public void setStage(String stage){
+		this.stage = stage;
+	}
+	
+	public void setGameMode(int mode){
+		this.gameMode = mode;
+	}
+	
+	public void setFightParameters(String p1, String p2, String stage, int mode){
+		setCharacters(p1, p2);
+		setStage(stage);
+		setGameMode(mode);
+	}
+	
+	/**
 	 * Input Listener
 	 */
+	
 	@Override
 	public void controllerButtonPressed(int controller, int button) {
 		InputManager.handleControllerInput(controller, "OMG Controller is Uping");

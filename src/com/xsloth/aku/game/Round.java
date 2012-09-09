@@ -8,16 +8,15 @@ public class Round {
 	int numRounds;
 	int[] roundStandings;
 	
-	private static final int P1 = 1;
-	private static final int P2 = 2;
-	private static final int NOTWON = -1;
+	protected static final int P1 = 1;
+	protected static final int P2 = 2;
+	protected static final int NOTWON = -1;
 	
 	public Round(int numRounds) {
 		this.numRounds = numRounds;
 		roundStandings = new int[this.numRounds];
 		
-		for(int i : roundStandings)
-			roundStandings[i]=0;
+		reset();
 	}
 	
 	/**
@@ -73,5 +72,16 @@ public class Round {
 				//System.out.println("Never showed");
 			}
 		}
+	}
+	
+	public void reset(){
+		for(int i=0; i < numRounds; i++){
+			roundStandings[i] = 0;
+		}
+	}
+	
+	public void print(){
+		for(int i : roundStandings)
+			System.out.println(i);
 	}
 }

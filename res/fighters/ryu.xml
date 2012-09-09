@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fighter>
+    <combos>
+        <combo>
+            <name>idle</name>
+            <damage>10</damage>
+            <loop>true</loop>
+            <moveSequence></moveSequence>
+            <frameNumber>4</frameNumber>
+            <!--
+            	frameSequence 
+            	sound
+            -->
+            <collisionSequence>
+                <frame>
+                    <square type="0" x="0" y="0" w="10" h="10"/>
+                    <square type="0" x="50" y="50" w="10" h="10"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="20" h="20"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="30" h="30"/>
+                </frame>
+                <frame>
+                    <square type="1" x="0" y="0" w="40" h="40"/>
+                </frame>
+            </collisionSequence>
+        </combo>
+        <combo>
+            <name>walking</name>
+            <damage>0</damage>
+            <loop>false</loop>
+            <moveSequence></moveSequence>
+            <frameNumber>5</frameNumber>
+            <collisionSequence>
+                <frame>
+                    <square type="0" x="0" y="0" w="10" h="10"/>
+                    <square type="0" x="50" y="50" w="10" h="10"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="20" h="20"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="30" h="30"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="40" h="40"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="50" h="50"/>
+                </frame>
+            </collisionSequence>
+        </combo>
+        <combo>
+            <name>lost</name>
+            <damage>0</damage>
+            <loop>false</loop>
+            <moveSequence></moveSequence>
+            <frameNumber>5</frameNumber>
+            <collisionSequence>
+                <frame>
+                    <square type="0" x="0" y="0" w="10" h="10"/>
+                    <square type="0" x="50" y="50" w="10" h="10"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="20" h="20"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="30" h="30"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="40" h="40"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="50" h="50"/>
+                </frame>
+            </collisionSequence>
+        </combo>
+        <combo>
+            <name>win1</name>
+            <damage>0</damage>
+            <loop>false</loop>
+            <moveSequence></moveSequence>
+            <frameNumber>3</frameNumber>
+            <collisionSequence>
+                <frame>
+                    <square type="0" x="0" y="0" w="10" h="10"/>
+                    <square type="0" x="50" y="50" w="10" h="10"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="20" h="20"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="30" h="30"/>
+                </frame>
+            </collisionSequence>
+        </combo>
+        <combo>
+            <name>win2</name>
+            <damage>0</damage>
+            <loop>false</loop>
+            <moveSequence></moveSequence>
+            <frameNumber>7</frameNumber>
+            <collisionSequence>
+                <frame>
+                    <square type="0" x="0" y="0" w="10" h="10"/>
+                    <square type="0" x="50" y="50" w="10" h="10"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="20" h="20"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="30" h="30"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="40" h="40"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="50" h="50"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="60" h="60"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="70" h="70"/>
+                </frame>
+            </collisionSequence>
+        </combo>
+        <combo>
+            <name>punch</name>
+            <damage>60</damage>
+            <loop>false</loop>
+            <moveSequence>
+                <move>
+                    <button>2</button>
+                </move>
+            </moveSequence>
+            <frameNumber>3</frameNumber>
+            <collisionSequence>
+                <frame>
+                    <square type="0" x="0" y="0" w="10" h="10"/>
+                    <square type="0" x="50" y="50" w="10" h="10"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="20" h="20"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="30" h="30"/>
+                </frame>
+            </collisionSequence>
+        </combo>
+        <combo>
+            <name>kick</name>
+            <damage>60</damage>
+            <loop>false</loop>
+            <moveSequence>
+                <move>
+                    <button>3</button>
+                </move>
+            </moveSequence>
+            <frameNumber>3</frameNumber>
+            <collisionSequence>
+                <frame>
+                    <square type="0" x="0" y="0" w="10" h="10"/>
+                    <square type="0" x="50" y="50" w="10" h="10"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="20" h="20"/>
+                </frame>
+                <frame>
+                    <square type="0" x="0" y="0" w="30" h="30"/>
+                </frame>
+            </collisionSequence>
+        </combo>
+    </combos>
+</fighter>

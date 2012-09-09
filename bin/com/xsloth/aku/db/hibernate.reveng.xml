@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-catalog="aku" match-name="fight"/>
+  <table-filter match-catalog="aku" match-name="fight_mode"/>
+  <table-filter match-catalog="aku" match-name="league"/>
+  <table-filter match-catalog="aku" match-name="league_rank"/>
+  <table-filter match-catalog="aku" match-name="rank"/>
+  <table-filter match-catalog="aku" match-name="user"/>
+</hibernate-reverse-engineering>

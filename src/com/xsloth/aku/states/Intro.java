@@ -20,6 +20,10 @@ public class Intro extends BasicGameState {
 		this.stateID = stateId;
 	}
 	
+	/**
+	 * State Logic
+	 */
+	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		intro = new Image[2];

@@ -1,5 +1,7 @@
 package com.xsloth.aku.states;
 
+import java.util.List;
+
 import org.lwjgl.input.Mouse;
 //import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
@@ -12,11 +14,15 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import com.xsloth.aku.AkuGame;
+import com.xsloth.aku.db.dao.UserHome;
+import com.xsloth.aku.db.hibernate.User;
 import com.xsloth.aku.input.ActionState;
 import com.xsloth.aku.input.InputAction;
 import com.xsloth.aku.input.InputManager;
 //import com.xsloth.aku.lang.Messages;
 import com.xsloth.aku.menu.Menu;
+import com.xsloth.aku.network.NetworkData;
+import com.xsloth.aku.util.GamePreferences;
 
 public class MainMenu extends BasicGameState {
 
@@ -31,7 +37,11 @@ public class MainMenu extends BasicGameState {
 	public MainMenu(int stateId){
 		this.stateID = stateId;
 	}
-
+	
+	/**
+	 * State Logic
+	 */
+	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		
@@ -60,7 +70,7 @@ public class MainMenu extends BasicGameState {
 			optionImages[6] = options.getSubImage(0, 150, 360, 200);
 			optionImages[7] = options.getSubImage(360, 150, 720, 200);
 
-			main = new Menu(400, 300, 360, 250, optionImages, background, selector);
+			main = new Menu(GamePreferences.getResX()/2, GamePreferences.getResY()/2, 360, 250, optionImages, background, selector);
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -91,14 +101,37 @@ public class MainMenu extends BasicGameState {
 		
 		switch (main.getSelectedOption()) {
 		case 1:
-			if(InputManager.getActionState(InputAction.MENU_CONFIRM) == ActionState.STATE_TAPPED)
+			if(InputManager.getActionState(InputAction.MENU_CONFIRM) == ActionState.STATE_TAPPED){
+				((Game)sbg.getState(AkuGame.GAMEPLAYSTATE)).setFightParameters("Ken", "Ryu", "s1", 1); //fazer inicialização das personagens e mapa
 				sbg.enterState(AkuGame.GAMEPLAYSTATE);
+			}
 			break;
 		case 2:
-			
+			if(InputManager.getActionState(InputAction.MENU_CONFIRM) == ActionState.STATE_TAPPED){
+				if(UserHome.getInstance().authenticate("jpacs", "jpacs"))
+					System.out.println("User Logged In");
+//				List<User> users = UserDao.getInstance().getAllUsers();
+//				if(users.isEmpty())
+//					System.out.println("FUCK");
+//				for(User user : users)
+//					System.out.println(user.getFirstName());
+//				UserDao.getInstance().insertUser("biu", "biu", "b", "iu", "ahah");
+			}
 			break;
 		case 3:
-			
+			if(InputManager.getActionState(InputAction.MENU_CONFIRM) == ActionState.STATE_TAPPED){
+				if(NetworkData.isLogged()){
+					NetworkData.setLogged(false);
+					NetworkData.setUser(null);
+					System.out.println("Sign off");
+				}
+				else{
+					NetworkData.setLogged(true);
+					NetworkData.setUser(UserHome.getInstance().findById(1l));
+					System.out.println("Sign on");
+					System.out.println(NetworkData.getUser().getFirstName());
+				}
+			}
 			break;
 		default:
 			break;

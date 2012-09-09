@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 7/Set/2012 18:29:41 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.xsloth.aku.db.hibernate.Rank" table="rank" catalog="aku">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="com.xsloth.aku.db.hibernate.User" fetch="select">
+            <column name="id_user" not-null="true" />
+        </many-to-one>
+        <many-to-one name="fightMode" class="com.xsloth.aku.db.hibernate.FightMode" fetch="select">
+            <column name="id_mode" not-null="true" />
+        </many-to-one>
+        <property name="rank" type="long">
+            <column name="rank" not-null="true" />
+        </property>
+        <property name="value1" type="string">
+            <column name="value1" length="250" />
+        </property>
+        <property name="value2" type="time">
+            <column name="value2" length="8" />
+        </property>
+        <set name="leagueRanks" table="league_rank" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_rank" not-null="true" />
+            </key>
+            <one-to-many class="com.xsloth.aku.db.hibernate.LeagueRank" />
+        </set>
+    </class>
+</hibernate-mapping>

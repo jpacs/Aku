@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 7/Set/2012 18:29:41 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.xsloth.aku.db.hibernate.League" table="league" catalog="aku">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="league" type="string">
+            <column name="league" length="250" not-null="true" />
+        </property>
+        <property name="leagueNumber" type="long">
+            <column name="league_number" not-null="true" />
+        </property>
+        <set name="leagueRanks" table="league_rank" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_league" not-null="true" />
+            </key>
+            <one-to-many class="com.xsloth.aku.db.hibernate.LeagueRank" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -6,6 +6,7 @@ import org.newdawn.slick.state.*;
 import com.xsloth.aku.states.Game;
 import com.xsloth.aku.states.Intro;
 import com.xsloth.aku.states.MainMenu;
+import com.xsloth.aku.util.GamePreferences;
 
 public class AkuGame extends StateBasedGame  {
 
@@ -28,9 +29,13 @@ public class AkuGame extends StateBasedGame  {
 	public static void main(String[] args) {
 		AppGameContainer appgc;
 		try{
+			//ler preferências de ficheiro de config
+			GamePreferences.init(800,600,false);
 			appgc = new AppGameContainer(new AkuGame());
-			appgc.setDisplayMode(800, 600, false);
+			appgc.setDisplayMode(GamePreferences.getResX(), GamePreferences.getResY(), GamePreferences.isFullScreenMode());
 			//appgc.setFullscreen(true);
+			appgc.setIcon("res/img/icon.png");
+			appgc.setShowFPS(false);
 			appgc.start();
 		}catch (SlickException e) {
 			e.printStackTrace();
